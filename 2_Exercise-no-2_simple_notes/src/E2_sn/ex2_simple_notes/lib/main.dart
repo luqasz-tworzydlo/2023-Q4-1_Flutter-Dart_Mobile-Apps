@@ -1,3 +1,4 @@
+import 'package:ex2_simple_notes/Note.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,13 @@ void main() {
 
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  List<Note> data = [
+    Note("Zakupy", "2023-10-18", "Kupić na jutro trzy pary skarpetek..."
+    )
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +47,6 @@ class MyApp extends StatelessWidget {
 
   Container buildContainer() {
     return Container(
-
       width: 300,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
