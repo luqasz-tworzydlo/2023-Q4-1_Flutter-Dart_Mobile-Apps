@@ -1,32 +1,48 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const Abc());
+  runApp(const MyApp());
 }
 
-class Abc extends StatelessWidget {
-  const Abc({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-                title: Text("Abc flutter"),
-                backgroundColor: Colors.amber
+              title: Text("my app"),
             ),
-            body: Container(
-                alignment: Alignment.center,
-                color: Colors.deepOrange,
-                width: 200,
-                height: 150,
-                child: Text("Hello world! :>", style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                ))
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  color: Colors.deepOrange,
+                  padding: EdgeInsets.all(20),
+                  child: Text("container no 1"),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  color: Colors.deepPurple,
+                  padding: EdgeInsets.all(20),
+                  child: Text("container no 2"),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  color: Colors.lightBlue,
+                  padding: EdgeInsets.all(20),
+                  child: Text("container no 3"),
+                ),
+                SizedBox(height: 15),
+                Container(
+                  color: Colors.lightGreen,
+                  padding: EdgeInsets.all(20),
+                  child: Text("container no 4"),
+                )
+              ],
             )
-        ) // szkielet aplikacji - scaffold
+        )
     );
   }
 }
