@@ -29,10 +29,28 @@ class MyApp extends StatelessWidget {
                   child: Text("container no 2"),
                 ),
                 SizedBox(height: 15),
-                Container(
-                  color: Colors.lightBlue,
-                  padding: EdgeInsets.all(20),
-                  child: Text("container no 3"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      color: Colors.yellow,
+                      padding: EdgeInsets.all(20),
+                      child: Text("wiersz 1"),
+                    ),
+                    SizedBox(width: 15),
+                    Container(
+                      color: Colors.blue,
+                      padding: EdgeInsets.all(20),
+                      child: Text("wiersz 2"),
+                    ),
+                    SizedBox(width: 15),
+                    Container(
+                      color: Colors.pink,
+                      padding: EdgeInsets.all(20),
+                      child: Text("wiersz 3"),
+                    ),
+                  ],
+
                 ),
                 SizedBox(height: 15),
                 Container(
@@ -46,3 +64,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
