@@ -17,51 +17,33 @@ class MyApp extends StatelessWidget {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  color: Colors.deepOrange,
-                  padding: EdgeInsets.all(20),
-                  child: Text("container no 1"),
-                ),
+                buildContainer("column 1", Colors.amber),
                 SizedBox(height: 15),
-                Container(
-                  color: Colors.deepPurple,
-                  padding: EdgeInsets.all(20),
-                  child: Text("container no 2"),
-                ),
+                buildContainer("column 2", Colors.blue),
                 SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      color: Colors.yellow,
-                      padding: EdgeInsets.all(20),
-                      child: Text("wiersz 1"),
-                    ),
+                    buildContainer("row 1", Colors.cyan),
                     SizedBox(width: 15),
-                    Container(
-                      color: Colors.blue,
-                      padding: EdgeInsets.all(20),
-                      child: Text("wiersz 2"),
-                    ),
+                    buildContainer("row 2", Colors.deepPurple),
                     SizedBox(width: 15),
-                    Container(
-                      color: Colors.pink,
-                      padding: EdgeInsets.all(20),
-                      child: Text("wiersz 3"),
-                    ),
+                    buildContainer("row 3", Colors.lime),
                   ],
-
                 ),
                 SizedBox(height: 15),
-                Container(
-                  color: Colors.lightGreen,
-                  padding: EdgeInsets.all(20),
-                  child: Text("container no 4"),
-                )
+                buildContainer("column 4", Colors.green),
               ],
             )
         )
     );
   }
-}
 
+  Container buildContainer(String name, Color color) {
+    return Container(
+      color: color,
+      padding: EdgeInsets.all(20),
+      child: Text(name),
+    );
+  }
+}
