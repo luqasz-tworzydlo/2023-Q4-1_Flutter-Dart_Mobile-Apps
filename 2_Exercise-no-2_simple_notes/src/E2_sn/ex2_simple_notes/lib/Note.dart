@@ -3,5 +3,5 @@ class Note {
   String date;
   String text;
 
-  Note(this.title, this.date, this.text);
+  Note({this.title = "", this.date = "", this.text = ""});
 }
