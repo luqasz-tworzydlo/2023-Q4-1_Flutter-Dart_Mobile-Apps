@@ -23,29 +23,101 @@ class MyApp extends StatelessWidget {
           IconButton(onPressed: () => {}, icon: const Icon (Icons.add)),
         ],
       ),
-      body: Column(
-        children: [
-          Container(
-            width: 300,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  width: 1,
-                  color: Colors.blue,
-                )
+      body: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 15),
+            Container(
+              width: 300,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.blue,
+                  )
+              ),
+              child: Column(
+                children: const [
+                  Text("Zakupy", style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple
+                  )),
+                  SizedBox(height: 3),
+                  Text("2023-10-28", style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.red
+                  )),
+                  SizedBox(height: 7),
+                  Text("Kupić na jutro trzy pary skarpetek...", style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.amber
+                  ))
+                ],
+              ),
             ),
-            child: Column(
-              children: const [
-                Text("Zakupy"),
-                Text("2023-10-28"),
-                Text("Kupić na jutro trzy pary skarpetek...")
-              ],
+            SizedBox(height: 15),
+            Container(
+              width: 300,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.blue,
+                  )
+              ),
+              child: Column(
+                children: const [
+                  Text("Zakupy", style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple
+                  )),
+                  SizedBox(height: 3),
+                  Text("2023-10-28", style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.red
+                  )),
+                  SizedBox(height: 7),
+                  Text("Kupić na jutro trzy pary skarpetek...", style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.amber
+                  ))
+                ],
+              ),
             ),
-          ),
-          Container(
-          ),
-          Container()
-        ],
+            SizedBox(height: 15),
+            Container(
+              width: 300,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 1,
+                    color: Colors.blue,
+                  )
+              ),
+              child: Column(
+                children: const [
+                  Text("Zakupy", style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.purple
+                  )),
+                  SizedBox(height: 3),
+                  Text("2023-10-28", style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.red
+                  )),
+                  SizedBox(height: 7),
+                  Text("Kupić na jutro trzy pary skarpetek...", style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.amber
+                  ))
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
