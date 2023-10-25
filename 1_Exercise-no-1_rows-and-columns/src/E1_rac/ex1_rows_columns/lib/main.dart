@@ -16,23 +16,24 @@ class MyApp extends StatelessWidget {
             ),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                buildContainer("column 1", color: Colors.amber),
-                SizedBox(height: 15),
-                buildContainer("column 2"),
-                SizedBox(height: 15),
+                buildContainer("pierwszy tekst", color: Colors.yellowAccent),
+                //SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildContainer("tekst A", color: Colors.cyan),
-                    SizedBox(width: 15),
-                    buildContainer("tekst B", color: Colors.deepPurple),
-                    SizedBox(width: 15),
-                    buildContainer("tekst C"),
+                    buildContainer("tekst A", color: Colors.transparent),
+                    //SizedBox(width: 5),
+                    buildContainer("tekst B", color: Colors.transparent),
+                    //SizedBox(width: 5),
+                    buildContainer("tekst C", color: Colors.transparent),
+                    //SizedBox(width: 5),
+                    buildContainer("tekst D", color: Colors.transparent),
                   ],
                 ),
-                SizedBox(height: 15),
-                buildContainer("column 4"),
+                //SizedBox(height: 5),
+                buildContainer("trzeci tekst", color: Colors.yellowAccent),
               ],
             )
         )
@@ -40,11 +41,18 @@ class MyApp extends StatelessWidget {
   }
 
   Container buildContainer(String name, {Color color = Colors.deepOrange}) {
-
     return Container(
-      color: color,
-      padding: EdgeInsets.all(20),
-      child: Text(name),
+      // color: color,
+        alignment: Alignment.center,
+        margin: EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
+        child: Text(name),
+        decoration: BoxDecoration(
+            color: color,
+            border: Border.all(
+                color: Colors.yellowAccent,
+                width: 5)
+        )
     );
   }
 }
