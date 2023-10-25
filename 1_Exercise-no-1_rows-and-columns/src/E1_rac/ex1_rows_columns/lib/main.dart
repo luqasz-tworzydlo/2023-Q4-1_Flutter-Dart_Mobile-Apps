@@ -17,29 +17,30 @@ class MyApp extends StatelessWidget {
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                buildContainer("column 1", Colors.amber),
+                buildContainer("column 1", color: Colors.amber),
                 SizedBox(height: 15),
-                buildContainer("column 2", Colors.blue),
+                buildContainer("column 2"),
                 SizedBox(height: 15),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildContainer("row 1", Colors.cyan),
+                    buildContainer("tekst A", color: Colors.cyan),
                     SizedBox(width: 15),
-                    buildContainer("row 2", Colors.deepPurple),
+                    buildContainer("tekst B", color: Colors.deepPurple),
                     SizedBox(width: 15),
-                    buildContainer("row 3", Colors.lime),
+                    buildContainer("tekst C"),
                   ],
                 ),
                 SizedBox(height: 15),
-                buildContainer("column 4", Colors.green),
+                buildContainer("column 4"),
               ],
             )
         )
     );
   }
 
-  Container buildContainer(String name, Color color) {
+  Container buildContainer(String name, {Color color = Colors.deepOrange}) {
+
     return Container(
       color: color,
       padding: EdgeInsets.all(20),
