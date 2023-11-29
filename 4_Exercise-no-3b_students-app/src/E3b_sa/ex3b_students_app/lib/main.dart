@@ -31,7 +31,6 @@ class _ex3_quotes_appState extends State<ex3_quotes_app> {
     Student("Władimir Łukaszenko", 24, "images/247899.jpg"),
   ];
 
-
   int position = 0;
 
   @override
