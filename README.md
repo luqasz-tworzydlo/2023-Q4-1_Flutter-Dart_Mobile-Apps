@@ -10,7 +10,7 @@ It displays a business card, and allows for searching and adding contacts along 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-Aplikacje mobilne stworzone w języku Dart (Flutter).
+Aplikacje mobilne stworzone w języku Dart ( Flutter ).
 
 W piątym projekcie została wykonana mobilna aplikacja dla kontaktów (zainspirowana iPhone'em),
 która wyświetla wizytówkę oraz pozwala na wyszukiwanie i dodawanie kontaktów wraz ze zdjęciami.
