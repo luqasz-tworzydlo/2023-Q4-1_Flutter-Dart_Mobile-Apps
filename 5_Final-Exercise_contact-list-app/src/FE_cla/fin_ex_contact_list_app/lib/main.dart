@@ -30,6 +30,32 @@ class Kontakt {
   Kontakt(this.nazwaKontaktu, this.relacjaRodzinna, this.numerTelefonu, this.adresEmail, this.notatkiKontaktu, this.zdjecieDoKontaktu);
 }
 
+class Wizytowka extends StatelessWidget {
+  final String nazwaKontaktu;
+  final String numerTelefonu;
+  final String notatkiKontaktu;
+  final String zdjecieDoKontaktu;
+
+  Wizytowka({required this.nazwaKontaktu, required this.numerTelefonu, required this.notatkiKontaktu, required this.zdjecieDoKontaktu});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            Image.asset(zdjecieDoKontaktu, width: 64.0, height: 71.5),
+            Text(nazwaKontaktu, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(numerTelefonu),
+            Text(notatkiKontaktu),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class ContactListApp extends StatefulWidget {
   @override
   _ContactListAppState createState() => _ContactListAppState();
@@ -89,6 +115,12 @@ class _ContactListAppState extends State<ContactListApp> {
       ),
       body: Column(
         children: [
+          Wizytowka(
+            nazwaKontaktu: "Lukasz Tworzydlo",
+            numerTelefonu: "Numer telefonu: 000-000-000",
+            notatkiKontaktu: "Moja wizytówka w iPhone 15 Pro Max.",
+            zdjecieDoKontaktu: "images/0-10771935.jpg",
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -212,7 +244,14 @@ void pokazInformacjeBleduWyswietlania(BuildContext context) {
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text("Informacja"),
-        content: Text("Funkcja obecnie niedostępna..."),
+        content: Column(
+          mainAxisSize: MainAxisSize.min, // Use min size for the column
+          crossAxisAlignment: CrossAxisAlignment.start, // Align text to the start (left)
+          children: <Widget>[
+            Text("Funkcja obecnie niedostępna..."),
+            Text("Spróbuj ponownie później..."),
+          ],
+        ),
         actions: <Widget>[
           TextButton(
             child: Text("Zamknij"),
