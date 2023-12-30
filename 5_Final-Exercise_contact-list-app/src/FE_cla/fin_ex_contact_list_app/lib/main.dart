@@ -10,9 +10,11 @@ class Kontakt {
   String nazwaKontaktu;
   String relacjaRodzinna;
   String numerTelefonu;
+  String adresEmail;
+  String notatkiKontaktu;
   String zdjecieDoKontaktu;
 
-  Kontakt(this.nazwaKontaktu, this.relacjaRodzinna, this.numerTelefonu, this.zdjecieDoKontaktu);
+  Kontakt(this.nazwaKontaktu, this.relacjaRodzinna, this.numerTelefonu, this.adresEmail, this.notatkiKontaktu, this.zdjecieDoKontaktu);
 }
 
 class ContactListApp extends StatefulWidget {
@@ -22,31 +24,40 @@ class ContactListApp extends StatefulWidget {
 
 class _ContactListAppState extends State<ContactListApp> {
   List<Kontakt> kontakty = [
-    Kontakt("Mamusia", "Matka", "123-456-789", "images/mom.png"),
-    Kontakt("Tatuś", "Ojciec", "234-567-890", "images/dad.png"),
-    Kontakt("Siostrzyczka", "Siostra", "345-678-901", "images/sister.png")
+    Kontakt("Mamusia", "Matka", "123-456-789", "mom@example.com", "Loves gardening", "images/mom.png"),
+    Kontakt("Tatuś", "Ojciec", "234-567-890", "dad@example.com", "Enjoys fishing", "images/dad.png"),
+    Kontakt("Siostrzyczka", "Siostra", "345-678-901", "sister@example.com", "Student at university", "images/sister.png")
   ];
 
-  List<Kontakt> filtrowanieKontaktow = [];
+  List<Kontakt> filtrowaneKontakty = [];
   String wyszukajKontakt = "";
 
   @override
   void initState() {
     super.initState();
-    filtrowanieKontaktow = kontakty;
+    filtrowaneKontakty = kontakty;
+    filtrowaneKontakty.sort((a, b) => a.nazwaKontaktu.compareTo(b.nazwaKontaktu));
   }
 
-  void updateSearchQuery(String newQuery) {
+  void aktualizujSzukaneZapytanie(String noweZapytanie) {
     setState(() {
-      wyszukajKontakt = newQuery;
+      wyszukajKontakt = noweZapytanie;
       if (wyszukajKontakt.isNotEmpty) {
-        filtrowanieKontaktow = kontakty
+        filtrowaneKontakty = kontakty
             .where((contact) =>
             contact.nazwaKontaktu.toLowerCase().contains(wyszukajKontakt.toLowerCase()))
             .toList();
       } else {
-        filtrowanieKontaktow = kontakty;
+        filtrowaneKontakty = kontakty;
       }
+      filtrowaneKontakty.sort((a, b) => a.nazwaKontaktu.compareTo(b.nazwaKontaktu));
+    });
+  }
+
+  void dodajNowyKontakt(Kontakt nowyKontakt) {
+    setState(() {
+      kontakty.add(nowyKontakt);
+      kontakty.sort((a, b) => a.nazwaKontaktu.compareTo(b.nazwaKontaktu));
     });
   }
 
@@ -61,7 +72,7 @@ class _ContactListAppState extends State<ContactListApp> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              onChanged: updateSearchQuery,
+              onChanged: aktualizujSzukaneZapytanie,
               decoration: InputDecoration(
                 labelText: 'Szukaj',
                 suffixIcon: Icon(Icons.search),
@@ -70,16 +81,16 @@ class _ContactListAppState extends State<ContactListApp> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: filtrowanieKontaktow.length,
+              itemCount: filtrowaneKontakty.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(filtrowanieKontaktow[index].nazwaKontaktu),
-                  subtitle: Text(filtrowanieKontaktow[index].relacjaRodzinna),
+                  title: Text(filtrowaneKontakty[index].nazwaKontaktu),
+                  subtitle: Text(filtrowaneKontakty[index].relacjaRodzinna),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ContactDetailsPage(filtrowanieKontaktow[index]),
+                        builder: (context) => stronaSzczegolyKontaktu(filtrowaneKontakty[index]),
                       ),
                     );
                   },
@@ -91,7 +102,10 @@ class _ContactListAppState extends State<ContactListApp> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigate to add new contact screen
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => stronaDodajKontakt(dodajNowyKontakt)),
+          );
         },
         child: Icon(Icons.add),
       ),
@@ -99,10 +113,83 @@ class _ContactListAppState extends State<ContactListApp> {
   }
 }
 
-class ContactDetailsPage extends StatelessWidget {
+class stronaDodajKontakt extends StatefulWidget {
+  final Function dodajKontaktCallback;
+
+  stronaDodajKontakt(this.dodajKontaktCallback);
+
+  @override
+  _stronaDodajKontaktState createState() => _stronaDodajKontaktState();
+}
+
+class _stronaDodajKontaktState extends State<stronaDodajKontakt> {
+  final _formKey = GlobalKey<FormState>();
+  String nazwaKontaktu = '';
+  String relacjaRodzinna = '';
+  String numerTelefonu = '';
+  String adresEmail = '';
+  String notatkiKontaktu = '';
+  String zdjecieDoKontaktu = '';
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Kontakt nowyKontakt = Kontakt(nazwaKontaktu, relacjaRodzinna, numerTelefonu, adresEmail, notatkiKontaktu, zdjecieDoKontaktu);
+      widget.dodajKontaktCallback(nowyKontakt);
+      Navigator.pop(context);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dodaj nowy kontakt'),
+      ),
+      body: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Nazwa Kontaktu'),
+              validator: (value) => value!.isEmpty ? 'Wpisz nazwę dla kontaktu' : null,
+              onSaved: (value) => nazwaKontaktu = value!,
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Relacja Rodzinna'),
+              onSaved: (value) => relacjaRodzinna = value!,
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Numer Telefonu'),
+              onSaved: (value) => numerTelefonu = value!,
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Adres Email'),
+              onSaved: (value) => adresEmail = value!,
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Zdjęcie do Kontaktu'),
+              onSaved: (value) => zdjecieDoKontaktu = value!,
+            ),
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Notatki Kontaktu'),
+              onSaved: (value) => notatkiKontaktu = value!,
+            ),
+            ElevatedButton(
+              onPressed: _submitForm,
+              child: Text('Dodaj Kontakt'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class stronaSzczegolyKontaktu extends StatelessWidget {
   final Kontakt kontakt;
 
-  ContactDetailsPage(this.kontakt);
+  stronaSzczegolyKontaktu(this.kontakt);
 
   @override
   Widget build(BuildContext context) {
@@ -110,14 +197,51 @@ class ContactDetailsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(kontakt.nazwaKontaktu),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('=> Nazwa Kontaktu: ${kontakt.nazwaKontaktu}'),
-            Text('=> Relacja Rodzinna: ${kontakt.relacjaRodzinna}'),
-            Text('=> Numer Telefonu: ${kontakt.numerTelefonu}'),
-            Image.asset(kontakt.zdjecieDoKontaktu, width: 100, height: 100),
+            Image.asset(kontakt.zdjecieDoKontaktu, width: 150, height: 150),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.message),
+                  onPressed: () {
+                    // funkcja wiadomości nie jest skonfigurowana
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.phone),
+                  onPressed: () {
+                    // funkcja dzwonienia nie jest skonfigurowana
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.videocam),
+                  onPressed: () {
+                    // funkcja wideo rozmowy nie jest skonfigurowana
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.email),
+                  onPressed: () {
+                    // funkcja emaila nie jest skonfigurowana
+                  },
+                ),
+              ],
+            ),
+            ListTile(
+              title: Text('Numer Telefonu'),
+              subtitle: Text(kontakt.numerTelefonu),
+            ),
+            ListTile(
+              title: Text('Relacja Rodzinna'),
+              subtitle: Text(kontakt.relacjaRodzinna),
+            ),
+            ListTile(
+              title: Text('Notatki Kontaktu'),
+              subtitle: Text(kontakt.notatkiKontaktu),
+            )
           ],
         ),
       ),
