@@ -206,6 +206,27 @@ class _stronaDodajKontaktState extends State<stronaDodajKontakt> {
   }
 }
 
+void pokazInformacjeBleduWyswietlania(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Informacja"),
+        content: Text("Funkcja obecnie niedostępna..."),
+        actions: <Widget>[
+          TextButton(
+            child: Text("Zamknij"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
 class stronaSzczegolyKontaktu extends StatelessWidget {
   final Kontakt kontakt;
 
@@ -228,24 +249,28 @@ class stronaSzczegolyKontaktu extends StatelessWidget {
                   icon: Icon(Icons.message),
                   onPressed: () {
                     // funkcja wiadomości nie jest skonfigurowana
+                    pokazInformacjeBleduWyswietlania(context);
                   },
                 ),
                 IconButton(
                   icon: Icon(Icons.phone),
                   onPressed: () {
                     // funkcja dzwonienia nie jest skonfigurowana
+                    pokazInformacjeBleduWyswietlania(context);
                   },
                 ),
                 IconButton(
                   icon: Icon(Icons.videocam),
                   onPressed: () {
                     // funkcja wideo rozmowy nie jest skonfigurowana
+                    pokazInformacjeBleduWyswietlania(context);
                   },
                 ),
                 IconButton(
                   icon: Icon(Icons.email),
                   onPressed: () {
                     // funkcja emaila nie jest skonfigurowana
+                    pokazInformacjeBleduWyswietlania(context);
                   },
                 ),
               ],
