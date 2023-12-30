@@ -1,3 +1,16 @@
+//////////////////////////////////////////////////
+//
+// => Imię i nazwisko: Łukasz Tworzydło
+// => Numer albumu: gd29623
+// => Nr. kierunku: INIS5_PR2
+// => Przedmiot: Programowanie urządzeń mobilnych
+//
+//////////////////////////////////////////////////
+//
+// Łukasz Tworzydło - nr albumu: gd29623 [projekt zaliczeniowy]
+//
+//////////////////////////////////////////////////
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,9 +37,16 @@ class ContactListApp extends StatefulWidget {
 
 class _ContactListAppState extends State<ContactListApp> {
   List<Kontakt> kontakty = [
-    Kontakt("Mamusia", "Matka", "123-456-789", "mom@example.com", "Loves gardening", "images/mom.png"),
-    Kontakt("Tatuś", "Ojciec", "234-567-890", "dad@example.com", "Enjoys fishing", "images/dad.png"),
-    Kontakt("Siostrzyczka", "Siostra", "345-678-901", "sister@example.com", "Student at university", "images/sister.png")
+    Kontakt("Mamusia", "Matka", "123-456-789", "mama@mail.com", "Uwielbia wyjazdy rodzinne...", "images/1-13451521.jpg"),
+    Kontakt("Tatuś", "Ojciec", "234-567-890", "tata@mail.com", "Lubi dbać o rośliny na działce...", "images/2-158109.jpg"),
+    Kontakt("Siostrzyczka", "Siostra", "345-678-901", "siostra@mail.com", "Podróżniczka, uwielbia zwiedzać...", "images/3-349758.jpg"),
+    Kontakt("Babcia", "Babcia", "456-789-012", "babcia@mail.com", "Bardzo lubi dzierganie na drutach...", "images/4-4264360.jpg"),
+    Kontakt("Ciocia", "Ciocia", "567-890-123", "ciocia@mail.com", "Lubi próbować nowe przepisy...", "images/5-1996337.jpg"),
+    Kontakt("Wujek", "Wujek", "678-901-234", "wujek@mail.com", "Lubi próbować różne alkohole...", "images/6-1526410.jpg"),
+    Kontakt("Kuzynka", "Kuzynka", "789-012-345", "kuzynka@mail.com", "Bardzo lubi prace domowe...", "images/7-158536.jpg"),
+    Kontakt("Kuzyn", "Kuzyn", "890-123-456", "kuzyn@mail.com", "Lubi podróżować z synkiem...", "images/8-39310.jpg"),
+    Kontakt("Chrześniak", "Syn Chrzestny", "901-234-567", "chrzesniak@mail.com", "Uwielbia jeść słodycze...", "images/9-3478875.jpg"),
+    Kontakt("Chrześniaczka", "Córka Chrzestna", "012-345-678", "chrzesniaczka@mail.com", "Bardzo lubi plac zabaw...", "images/10-1444321.jpg")
   ];
 
   List<Kontakt> filtrowaneKontakty = [];
@@ -200,7 +220,7 @@ class stronaSzczegolyKontaktu extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Image.asset(kontakt.zdjecieDoKontaktu, width: 150, height: 150),
+            Image.asset(kontakt.zdjecieDoKontaktu, width: 640, height: 715),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
